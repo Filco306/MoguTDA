@@ -22,6 +22,11 @@ class SimplicialComplex:
     def n_faces(self, n):
         return list(filter(lambda face: len(face) == n + 1, self.face_set))
 
+    def calculate_distmatrix(self, points, labels, distfcn):
+        """ Generate the distance matrix. """
+        return {(labels[i], labels[j]): distfcn(points[i], points[j])
+                for i in range(len(labels)) for j in range(len(labels))}
+
     def boundary_operator(self, i):
         source_simplices = self.n_faces(i)
         target_simplices = self.n_faces(i - 1)

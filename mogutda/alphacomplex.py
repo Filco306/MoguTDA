@@ -5,10 +5,10 @@ from .abssimcomplex import SimplicialComplex
 from . import facesiter, get_allpoints
 
 
-def calculate_distmatrix(points, labels, distfcn):
+"""def calculate_distmatrix(points, labels, distfcn):
     return {(labels[i], labels[j]): distfcn(points[i], points[j])
             for i in range(len(labels)) for j in range(len(labels))}
-
+"""
 
 def contain_detachededges(simplex, distdict, epsilon):
     if len(simplex) == 2:
@@ -39,7 +39,7 @@ class AlphaComplex(SimplicialComplex):
                                                        self.distfcn))
 
     def construct_simplices(self, points, labels, epsilon, distfcn):
-        distdict = calculate_distmatrix(points, labels, distfcn)
+        distdict = self.calculate_distmatrix(points, labels, distfcn)
 
         delaunayobj = Delaunay(points)
 
